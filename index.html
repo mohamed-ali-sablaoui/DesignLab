@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f7f4">
+<title>DesignLab  Bibliothèque HTML & CSS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="site-header">
+    <div class="site-header-brand">
+    <div class="sidebar-header">
+        <div class="logo">Design<span>Lab.</span></div>
+        <p>Une bibliothèque de balises HTML et de propositions CSS conçues pour explorer plusieurs styles.</p>
+    </div>
+    </div>
+    <div class="site-header-title">
+        <header class="page-header">
+            <div class="page-kicker">HTML · CSS · COMPONENT LIBRARY</div>
+            <h1>Bibliothèque HTML &amp; CSS interactive</h1>
+            <p>
+                Choisissez une balise HTML couramment utilisée dans le body.
+                Chaque balise possède sa propre bibliothèque de 60 exemples CSS variés.
+                Prévisualisez les styles, explorez les états interactifs et copiez le code
+                HTML et CSS pour le réutiliser dans vos projets.
+            </p>
+        </header>
+    </div>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="workspace">
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-search">
+        <input id="elementSearch" type="search" placeholder="Rechercher une balise HTML..." aria-label="Rechercher une balise HTML">
+    </div>
+    <div class="sidebar-heading">HTML — éléments du body</div>
+    <nav class="sidebar-content" id="elementLibrary" aria-label="Bibliothèque des balises HTML"></nav>
+    <div class="sidebar-footer">DESIGNLAB · HTML & CSS LIBRARY</div>
+</aside>
+
+<main class="main">
+    <div class="mobile-bar">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir la bibliothèque">☰</button>
+        <div class="mobile-logo">DesignLab.</div>
+    </div>
+
+
+    <section class="stats" aria-label="Statistiques de la bibliothèque" >
+        <div class="stat" hidden="true"><strong id="elementCount">0</strong><span>Balises HTML disponibles</span></div>
+        <div class="stat" hidden="true"><strong id="libraryCount">0</strong><span>Bibliothèques CSS indépendantes</span></div>
+        <div class="stat" hidden="true"><strong id="exampleCount">0</strong><span>Exemples CSS disponibles</span></div>
+    </section>
+
+    <section aria-labelledby="examplesTitle">
+        <div class="library-heading">
+            <div>
+                <h2 id="examplesTitle">Choisissez une balise HTML</h2>
+                <p id="examplesDescription">Sélectionnez une balise dans la bibliothèque fixe à gauche pour afficher ses 60 propositions CSS.</p>
+            </div>
+            <input type="search" class="search-examples" id="exampleSearch" placeholder="Rechercher dans les 60 exemples..." aria-label="Rechercher un exemple CSS">
+        </div>
+        <div class="filters" id="categoryFilters"></div>
+        <div class="result-line">
+            <span id="resultCount">Sélectionnez une balise</span>
+            <span id="selectedTagLabel">Aucune balise sélectionnée</span>
+        </div>
+        <div class="examples-grid" id="examplesGrid"></div>
+        <div class="empty-state" id="emptyState">Choisissez une balise HTML dans la bibliothèque à gauche pour afficher ses 60 exemples CSS.</div>
+    </section>
+
+    <section class="references" hidden="true">
+        <h2>Ressources et documentation</h2>
+        <p>Références utiles pour approfondir les balises HTML et les propriétés CSS.</p>
+        <div class="reference-grid">
+            <a class="reference" href="https://developer.mozilla.org/fr/docs/Web/HTML/Reference/Elements" target="_blank" rel="noopener noreferrer"><strong>MDN — HTML</strong><span>Documentation des éléments HTML.</span></a>
+            <a class="reference" href="https://developer.mozilla.org/fr/docs/Web/CSS" target="_blank" rel="noopener noreferrer"><strong>MDN — CSS</strong><span>Documentation des propriétés CSS.</span></a>
+            <a class="reference" href="https://web.dev/learn/css/" target="_blank" rel="noopener noreferrer"><strong>web.dev — CSS</strong><span>Apprendre le CSS moderne.</span></a>
+            <a class="reference" href="https://uiverse.io/" target="_blank" rel="noopener noreferrer"><strong>UIverse</strong><span>Inspirations de composants et interactions.</span></a>
+            <a class="reference" href="https://codepen.io/" target="_blank" rel="noopener noreferrer"><strong>CodePen</strong><span>Exemples et démonstrations web.</span></a>
+            <a class="reference" href="https://www.w3schools.com/css/" target="_blank" rel="noopener noreferrer"><strong>W3Schools</strong><span>Exemples et tutoriels CSS.</span></a>
+        </div>
+    </section>
+</main>
+</div>
+
+<div class="modal" id="exampleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2 id="modalTitle">Exemple CSS</h2>
+            <button class="close-modal" id="closeModal" type="button" aria-label="Fermer">×</button>
+        </div>
+        <div class="modal-toolbar">
+            <div class="state-buttons">
+                <button class="state-btn active" data-state="normal" type="button">Normal</button>
+                <button class="state-btn" data-state="hover" type="button">Hover</button>
+                <button class="state-btn" data-state="click" type="button">Click</button>
+                <button class="state-btn" data-state="focus" type="button">Focus</button>
+            </div>
+            <div class="code-buttons">
+                <button class="code-btn active" data-code="both" type="button">HTML + CSS</button>
+                <button class="code-btn" data-code="html" type="button">HTML</button>
+                <button class="code-btn" data-code="css" type="button">CSS</button>
+                <button class="copy-btn" id="copyCode" type="button">Copier le code</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="preview-panel">
+                <div class="panel-title">Aperçu du composant</div>
+                <p class="modal-description" id="modalDescription"></p>
+                <iframe id="previewFrame" class="preview-frame" title="Aperçu du composant" sandbox="allow-scripts"></iframe>
+            </div>
+            <div class="code-panel">
+                <div class="panel-title">Code source</div>
+                <pre><code id="codeOutput"></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
